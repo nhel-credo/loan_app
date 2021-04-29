@@ -18,5 +18,20 @@ class Summary_model extends CI_Model
 		return $query->result();
 	}
 
+	function monthly_summary($from,$to)
+	{
+		$query=$this->db->query("SELECT  borrower_tbl.ref_id,borrower_tbl.suffix,borrower_tbl.fname,borrower_tbl.mname,borrower_tbl.lname,payments_tbl.loan_id,sum(payments_tbl.total_payment)as total_payment,SUM(payments_tbl.penalties)+SUM(payments_tbl.existing_penalty)as total_penalties FROM `payments_tbl` INNER JOIN loans_tbl ON loans_tbl.loan_id=payments_tbl.loan_id INNER JOIN borrower_tbl ON borrower_tbl.id=loans_tbl.borrower_id WHERE date_created>='$from' AND date_created<='$to' GROUP BY loan_id ");
+
+		return $query->result();
+
+	}
+
+
+	function detailed_borrower()
+	{
+		$query=$this->db->query("SELECT * FROM `borrower_tbl` ");
+		return $query->result();
+	}
+
 }?>
 

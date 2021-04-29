@@ -530,7 +530,7 @@ function preview(input){
 body {
 	color: #fff;
 	background: #63738a;
-	font-family: 'Roboto', sans-serif;
+	
 }
 .form-control {
 	height: 40px;

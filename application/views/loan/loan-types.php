@@ -97,9 +97,9 @@
                         <td class="align-center">
                             <div class="text-center">
                                 
-                                <button  class="btn btn-warning btn-sm  update-btn" data-id="<?php echo $row->id?>"><a class="fas fa-edit text-white"  data-toggle="tooltip"  name="edit" title="Edit" ></a></button>
+                                <button  class="btn btn-primary btn-sm  update-btn" data-id="<?php echo $row->id?>"><a class="fas fa-edit text-white"  data-toggle="tooltip"  name="edit" title="Edit" ></a></button>
 
-                                <button class="btn btn-danger btn-sm delete" data-id="<?php echo $row->id?>"><a class="fas fa-trash-alt text-white" data-toggle="tooltip" data-placement="top" title="Remove"></a></button>
+                                <button class="btn btn-secondary btn-sm delete" data-id="<?php echo $row->id?>"><a class="fas fa-trash-alt text-white" data-toggle="tooltip" data-placement="top" title="Remove"></a></button>
 
                             </div>
                         </td>

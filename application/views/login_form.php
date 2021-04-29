@@ -2,12 +2,23 @@
 
   
 </head>
+<?php 
+
+
+  if($this->session->flashdata('err_msg')!=Null)
+  {
+
+    $err_msg=$this->session->flashdata('err_msg');
+    
+  }else{
+      $err_msg="";
+  }
+?>
 
 <body onload="noBack()">
 <div class="container-fluid">
 <div class="card">
   <div class="card-body">
-
 
 <div class="login-form">    
 
@@ -19,10 +30,20 @@
             <input type="text" name="username" class="form-control" placeholder="Username/email" required="required">
         </div>
         <div class="form-group">
-            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="required">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="required">           
         </div>
+
+            <div class="from-group">
+             
+             <?php 
+             echo $err_msg;
+            ?>
+         
+           </div>
+          
         <div class="form-group small clearfix">
             <label  class="form-check-label"><input id="show-password" type="checkbox">show password</label>
+
             <a href="#" class="forgot-link">Forgot Password?</a>
         </div> 
         <input type="submit" class="btn btn-primary btn-block btn-lg login" value="Login">
@@ -73,7 +94,7 @@ window.history.forward();
   //   window.onunload = function () { null };
   //  function noBack() { window.history.forward(); }
 
-
+$('.alert').alert();
 </script>
 
 <style>

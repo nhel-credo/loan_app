@@ -17,13 +17,13 @@ function __construct(){
 }
 	
 
-public function index()
-{
-		
-$this->load->view('header');
-$this->load->view('login_form');
+	public function index()
+	{
 
-}
+	$this->session->set_flashdata('err_msg',null);
+	$this->load->view('header');
+	$this->load->view('login_form');
+	}
 
 	public function callHeader()
 	{
@@ -61,11 +61,15 @@ $this->load->view('login_form');
 		// $password="admin";
 		$user_info=$this->get_user_info($user,$password);
 		$borrower_info=$this->get_borrower_info($password);
-	
+		
 
 		$query=$this->login_model->user_login($user,$password);
+
+		$msg="";
+		
 		if($query)
 		{
+
 			// $this->set_login_status($user,$password,'1');
 			
 			if($query[0]->role=="Admin")
@@ -98,8 +102,10 @@ $this->load->view('login_form');
 		}
 		else
 		{
-
-			// $this->session->set_flashdata('error', 'Invalid Username and Password');
+			
+			$msg="<div class='text-center alert alert-danger alert-dismissible fade show' role='alert' style='color: #721c24;background-color: #f8d7da;border-color: #f5c6cb'><strong>Login Failed!</strong> User Not Found!</div>";
+			// $session['error_msg']=$msg;	
+			$this->session->set_flashdata('err_msg',$msg);		
 			return $this->load->view('login_form');
 		
 		}

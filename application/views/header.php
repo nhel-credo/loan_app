@@ -8,6 +8,10 @@
 
 <style type="text/css">
 
+  .active
+  {
+    background:#0a6ed9a1 !important;
+  }
   .content-wrapper
     {
       background:#afafb1 !important;
@@ -144,6 +148,10 @@
 
 <!-- popper js -->
 <script src="<?php echo base_url(); ?>assets/plugins/popper/popper.js"></script>
+
+<!-- canvasjs chart -->
+<script src="<?php echo base_url(); ?>assets/canvasjs/canvasjs.min.js"></script>
+
 
 
  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

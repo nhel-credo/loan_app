@@ -143,6 +143,7 @@ function get_payment_details($loan_id)
 public function insert_borrower()
 {
 	$unique=$this->refID();
+	$date=$this->get_current_date();
 
 	$data = array(
 		'ref_id'=>$unique,
@@ -158,6 +159,7 @@ public function insert_borrower()
 		'occupation'=>$this->input->post('occupation'),
 		'address'=>$this->input->post('address'),
 		'image'=>$this->upload_image(),
+		'date_registered'=>$date
 	);
 	$query=$this->borrowers_model->insert_borrower($data);	
 	

@@ -22,6 +22,45 @@ Class Summary extends CI_Controller
 		$this->callFooter();
 	}
 
+	function monthly_summary()
+	{	
+		$from="2021-04-01";
+		$to="2021-04-30";
+		// $from=$this->input->post('from');
+		// $to= $this->input->post('to');
+		$summary_data=$this->summary_model->monthly_summary($from,$to);
+
+		$this->callHeader();
+		$this->load->view('loan/monthly_summary',array('data'=>$summary_data,));
+		$this->callFooter();
+		// var_dump($summary_data)	;
+		// echo $from.$to;	
+		// echo json_encode($summary_data);
+	}
+
+	function get_payment_summary()
+	{	
+		// $from="2021-04-01";
+		// $to="2021-04-30";
+		// $id=$this->input->post('id');
+		$from= $this->input->post('from');
+		$to= $this->input->post('to');
+		$summary_data=$this->summary_model->monthly_summary($from,$to);
+		echo json_encode($summary_data);
+		
+	}
+
+
+	function borrower_detailed()
+	{
+		$query=$this->summary_model->detailed_borrower();
+		$this->callHeader();
+		$this->load->view('loan/borrower_detailed',array('detail'=>$query));
+		$this->callFooter();
+		// var_dump($query);
+
+	}
+
 	function callHeader()
 	{
 		$this->load->view('header');

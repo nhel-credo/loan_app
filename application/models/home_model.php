@@ -38,5 +38,25 @@ Class Home_model extends CI_Model
 		$query=$this->db->query("SELECT SUM(total_balance)as total_balance FROM `next_payment`");
 		return $query->result();
 	}
+
+	function yearly_payment()
+	{
+		$query=$this->db->query("SELECT sum(payments_tbl.total_payment)as total_payment,year(date_created)as year_counted  FROM `payments_tbl` GROUP BY year(date_created) ");
+		return  $query->result();
+	}
+
+	function daily_released()
+	{
+		$query=$this->db->query("SELECT SUM(amount)as amount,date_released FROM `loans_tbl` GROUP BY date_released");
+		return $query->result();
+	}
+
+	function daily_payment()
+	{
+		$query=$this->db->query("SELECT SUM(total_payment)as total_payment,date_created  FROM `payments_tbl` GROUP BY date_created");
+		return $query->result();
+	}
+
+
 }
 ?>

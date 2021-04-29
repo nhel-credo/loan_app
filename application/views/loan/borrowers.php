@@ -1,5 +1,5 @@
 <!--Create New Loan Application Form -->
-<div class="modal fade" id="loan-form-modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="loan-form-modal" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -85,7 +85,7 @@
          </div>          
         </div>
        
-        <h6 class="text-center">Deductions</h6>
+        <!-- <h6 class="text-center">Deductions</h6>
         <div class="form-group user-details">
             <div class="row">
                 <div class="col"><p class="">Name:</p></div>
@@ -106,11 +106,12 @@
                 <div class="col"><input type="text" class="form-control" name="amount[]" placeholder="" required="required">
                 </div>
                  <button class="btn btn-info add-field">+</button>
-                </div><br>
-              
-                
+             </div>
+             <br>       
                    
-        </div>
+        </div> -->
+
+
                 <h6 class="text-center">References</h6>
         <div class="form-group">
             <div class="row">
@@ -249,7 +250,17 @@
                 <div class="col"><h6 for="fname" class="pull-left text-secondary text-sm">FirstName</h6><input type="text" class="form-control" name="fname" id="ufname" placeholder="First Name" required="required"></div>
                 <div class="col"><h6 for="fname" class="pull-left text-secondary text-sm">MiddleName</h6><input type="text" class="form-control" name="mname" id="umname" placeholder="Middle Name" required="required"></div>
                 <div class="col"><h6 for="fname" class="pull-left text-secondary text-sm">LastName</h6><input type="text" class="form-control" id="ulname" name="lname" placeholder="Last Name" required="required"></div>
-                <div class="col"><h6 for="fname" class="pull-left text-secondary text-sm">Suffix(Optional)</h6><input type="text" class="form-control" name="suffix" id="usuffix" placeholder="Suffix Optional"></div>
+                <div class="col"><h6 for="fname" class="pull-left text-secondary text-sm">Suffix(Optional)</h6>
+                  <select name="suffix" class="form-control" id="usuffix">
+                    <option value="">Suffix(None)</option>
+                    <option value="jr">Jr</option>
+                    <option value="sr">Sr</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option>V</option>
+                  </select>
+                </div>
 
 
             </div>          
@@ -339,7 +350,17 @@
                 <div class="col"><input type="text" class="form-control" name="mname" id="
                     mname" placeholder="Middle Name" required="required"></div>
                 <div class="col"><input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required="required"></div>
-                <div class="col"><input type="text" class="form-control" name="suffix" id="suffix" placeholder="Suffix Optional"></div>
+                <div class="col">
+                   <select name="suffix" class="form-control" id="usuffix" placeholder="suffix">
+                    <option value="">Suffix(None)</option>
+                    <option value="jr">Jr</option>
+                    <option value="sr">Sr</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option>V</option>
+                  </select>
+                </div>
 
 
             </div>          
@@ -421,13 +442,12 @@
 
    <div class="card">
     <div class="header">
-    </div>
-    <div class="card-body bg-light">
-  
-  <div class="row" style="height:5rem;">   
+
+ <div class="row" style="height:5rem; padding: 5px;">   
      <div class="col mb-4 col-sm-4"  style="margin:5px;">
       <label class="control-label">Search</label>
-    <input class="filter form-control" placeholder="search" />
+      <input class="filter form-control" placeholder="" id="filter">
+
       </div>  
      <div class="col" style="margin-top: 39px;">
       <button id="add_borrower" class=" btn btn-info pull-right btn-sm "><span class="fas fa-plus-square" style="margin: 5px;"></span>ADD NEW</button>   
@@ -435,12 +455,19 @@
     
   </div>
 
+    </div>
+    <div class="card-body bg-light">
   
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+
+
+  
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" id="myItems">
 
 <?php  foreach ($data as $row) { ?>
+
+
 <div class="col mb-4">
- <div class="card hovercard" data-string="<?php echo $row->fname.$row->mname.$row->lname.$row->ref_id ?>">
+ <div class="card hovercard" id="card" data-string="<?php echo $row->fname.$row->mname.$row->lname.$row->ref_id ?>">
   <div class="cardheader">
 <!-- leave blank -->
   </div>
@@ -450,12 +477,12 @@
             <div class="card-body">
                <div class="info">
                 <div class="row ">
-                    <div class="h6">
+                    <div class="h6" style="font-size: 13px;">
                         <a><?php echo ucfirst($row->lname).', '.ucfirst($row->fname).' '.ucfirst(substr($row->mname,0,1)).'. '.ucfirst($row->suffix)?></a>
                     </div>
                   </div>
                     <div class="desc"><?php echo $row->ref_id ?></div>
-                    <div class="desc"><?php echo ucwords($row->address) ?></div>
+                    <!-- <div class="desc"><?php echo ucwords($row->address) ?></div> -->
                     <div class="desc"><?php echo $row->contact ?></div>
                     
                 </div>
@@ -473,9 +500,13 @@
                 </div>        
                 
             </div>
-             <div class="card-footer"></div>
+             <div class="card-footer text-muted" style="font-size: 10px;">
+                    Date Registered: <?php echo $row->date_registered ?>
+               
+             </div>
         </div>
       </div>
+
 <?php } ?>
   </div>  
 
@@ -483,72 +514,6 @@
 </div>
 
 
-<!-- <div class="card bg-light">
-  <div class="card-header">
-    <div class="row">
-      <div class="col">
-        <p class="card-title">Borrowers</p>
-    </div>
-    <div class="col">
-      <button id="add_borrower" class=" btn btn-info pull-right btn-sm" style="margin:15px;"><span class="fas fa-plus-square" style="margin: 5px;"></span>ADD NEW</button>
-    </div>
-  </div>
-</div>
-  <div class="card-body">
-        
-        <div class="container" style="padding: 10px;">
-            <table id="borrower_data" class="table table-stripped table-hover">
-                <thead class="table-success">
-
-                <th class="align-center text-center" width="30">#</th>
-                <th width="100" class="text-center">Image</th> 
-                <th class="">Details</th>
-                <th class="text-center" width="80">DoB</th>
-                <th class="text-center">Gender</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Citizenship</th>
-                <th class="text-center">Occupation</th>   
-                <th class="text-center">Controls</th>
-            </thead>
-
-               <?php $i=1; ?>
-                <?php  foreach ($data as $row) { ?>
-                <?php $date = new DateTime($row->dob)?>
-                    <tr>
-                        <td class="align-center text-center"><strong><?php echo $i ?></strong></td>                                               
-                        <td class="align-center"><a target="_blank" href="<?php echo base_url().'upload/'.$row->image?>"><img src="<?php echo base_url().'upload/'.$row->image?>"  class="img-thumbnail .img" width="120" /></a></td>
-                        <td>
-                            <p>ID No: <strong class="text-sm"><?php echo $row->ref_id; ?></strong></p>
-                            <p>Name: <strong class="text-sm"><?php echo ucfirst($row->fname).' '.ucfirst($row->mname).' '.ucfirst($row->lname).' '.ucfirst($row->suffix)?></strong></p>
-                            <p>Contact: <strong class="text-sm"><?php echo ucfirst($row->contact); ?></strong></p>
-                            <p>Address: <strong class="text-sm"><?php echo ucfirst($row->address) ?></strong></p>
-                        </td>
-                        <td class="align-center text-center"><?php echo $date->format('M d Y')?></td>
-                        <td class="align-center text-center"><?php echo ucwords($row->gender) ?></td>
-                        <td class="align-center text-center"><?php echo ucwords($row->status)?></td>
-                        <td class="align-center text-center"><?php echo ucwords($row->nationality) ?></td>
-                        <td class="align-center text-center"><?php echo ucwords($row->occupation)?></td>
-                        
-                        
-                        <td class="align-center">
-                            <div class="text-center">
-                                <button  class="btn-width btn btn-info btn-sm view-record" data-id="<?php echo $row->id?>"><a class="fas fa-search text-white info_modal_btn" data-toggle="tooltip"
-                                 data-placement="left" title="View Records"></a>Records</button>
-
-                                <button  class="btn-width btn btn-warning btn-sm  update_borrower" data-id="<?php echo $row->id?>"><a class="fas fa-edit text-white"  data-toggle="tooltip"  name="edit" title="Edit" ></a>Details</button>
-
-                                <button class="btn-width btn btn-danger btn-sm delete" data-id="<?php echo $row->id?>"><a class="fas fa-trash-alt text-white" data-toggle="tooltip" data-placement="top" title="Remove"></a>Remove</button>
-
-                            </div>
-                        </td>
-                    </tr>
-                    <?php $i++; ?>
-                <?php }  ?>
-               
-             </table>
-        </div>
-    </div>
-  </div> -->
 </div>
 
 
@@ -712,7 +677,7 @@ $('#borrower_data').DataTable({});
                                 $('#ufname').val(fname);
                                 $('#umname').val(mname);
                                 $('#ulname').val(lname);
-                                $('#usuffix').val(suffix);
+                                $('#usuffix').val(suffix).change();
                                 $('#udob').val(dob);
                                 $('#ugender').val(gender);
                                 $('#ustatus').val(status);
@@ -1013,17 +978,25 @@ $("body").on("click",".remove-btn",function(e){
 
 
 // filter data in cards
-$(".filter").on("keyup", function() {
-  var input = $(this).val().toUpperCase();
 
-  $(".card").each(function() {
-    if ($(this).data("string").toUpperCase().indexOf(input) < 0) {
-      $(this).hide();
-    } else {
-      $(this).show();
-    }
-  })
+$("#filter").on("keyup", function() {
+  var input = $(this).val().toUpperCase();
+  console.log($('#card').data("string").toUpperCase());
+
+  // $("#card").each(function() {
+    
+  //   if ($(this).data("string").toUpperCase().indexOf(input)<0){      
+  //     $(this).hide();
+  //     console.log($(this).data("string").toUpperCase());
+  //   } else {
+  //     console.log($(this).data("string").toUpperCase());
+  //     $(this).show();
+  //   }
+  // })
+
 });
+
+
 
 </script>
 
@@ -1101,7 +1074,7 @@ p{
     padding-top: 20px;
     margin: 15px;
     /*margin: 10px 0 20px 0;
-*/    background-color: rgba(214, 224, 226, 0.2);
+*/   background-color: rgba(214, 224, 226, 0.2);
     border-top-width: 0;
     border-bottom-width: 2px;
     -webkit-border-radius: 3px;

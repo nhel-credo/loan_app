@@ -24,8 +24,8 @@
 
  
          <?php
-          $fname=$this->session->userdata['user_info'][0]->firstname;
-          $lname=$this->session->userdata['user_info'][0]->lastname;
+          // $fname=$this->session->userdata['user_info'][0]->firstname;
+          // $lname=$this->session->userdata['user_info'][0]->lastname;
           $role=$this->session->userdata['user_info'][0]->role;
           ?>
 
@@ -35,7 +35,7 @@
      
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link"><?php echo $role; ?></a>
+        <a href="#" class="nav-link"><?php echo ucwords($role); ?></a>
       </li>
      
 

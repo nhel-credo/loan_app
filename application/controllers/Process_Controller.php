@@ -81,9 +81,8 @@ function create_new_loan()
 		);
 
 	$reference=$this->insert_references($loan_id);
-	$deductions=$this->insert_deductions($loan_id);
-	$this->process_model->create_new_loan($data);
-	
+	$deductions=$this->insert_deductions($loan_id,$borrower_id);
+	$this->process_model->create_new_loan($data);	
 
 }
 
@@ -162,24 +161,19 @@ return $unique;
 
 
 
-function insert_deductions($loan_id)
+function insert_deductions($loan_id,$borrower_id)
 {
 
-// $loan_id=$this->refID();
-
-$dd=$this->input->post('deductions');
-$r=$this->input->post('reference');
-$amt=$this->input->post('amount');
- $counter = count($dd);    
+$this->load->model('deduction_model');
+$d=$this->deduction_model->get_loan_deductions();   
   
-    for($i=0; $i < $counter; $i++)
+    for($i=0; $i < count($d); $i++)
     {
       
       $data = array(
-      	'deduction_name' =>$this->input->post('deductions')[$i],
-      	'reference'=>$this->input->post('reference')[$i],
-      	'amount'=>$this->input->post('amount')[$i],
-      	'borrower_id'=>$this->input->post('borrower_id'),
+      	'deduction_name'=>$d[$i]->deductions_name,      	
+      	'amount'=>$d[$i]->amount,
+      	'borrower_id'=>$borrower_id,
       	'loan_id'=>$loan_id,
       );
       // var_dump($data);

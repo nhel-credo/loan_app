@@ -153,7 +153,7 @@ public function callHeader()
 	{
 		$this->load->view('header');
 		$this->load->view('nav-bar');
-		$this->load->view('staff/side-bar');
+		$this->load->view('side-bar');
 	}
 
 public function callFooter()

@@ -183,10 +183,10 @@ var table = $('#loan-table').DataTable({
             return "<p class='action-btn'><button id="+row[2]+" class='btn btn-link btn-sm  release action-btn' data-id="+row[1]+"><a class='fas fa-edit  info_modal_btn' data-toggle='tooltip' data-placement='left' title='approve'></a>Release</button></p>";
 
         }
-        if (row[5] =="For Approval") {
-            return "<p class='action-btn'><button id="+row[2]+" class='btn btn-link btn-sm approve action-btn' data-id="+row[1]+"><a class='fas fa-edit  info_modal_btn' data-toggle='tooltip' data-placement='left' title='approve'></a>Approve</button></p>     <p class='action-btn'><button id="+row[2]+" class='btn btn-link btn-sm  deny action-btn' data-id="+row[1]+"><a class='fas fa-edit  info_modal_btn' data-toggle='tooltip' data-placement='left' title='Deny'></a>Deny</button></p>";
+        // if (row[5] =="For Approval") {
+        //     return "<p class='action-btn'><button id="+row[2]+" class='btn btn-link btn-sm approve action-btn' data-id="+row[1]+"><a class='fas fa-edit  info_modal_btn' data-toggle='tooltip' data-placement='left' title='approve'></a>Approve</button></p>     <p class='action-btn'><button id="+row[2]+" class='btn btn-link btn-sm  deny action-btn' data-id="+row[1]+"><a class='fas fa-edit  info_modal_btn' data-toggle='tooltip' data-placement='left' title='Deny'></a>Deny</button></p>";
 
-        }
+        // }
         if (row[5] =="Denied") {
             return "<p class='text-center'>N/A</p>";
 

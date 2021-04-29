@@ -95,6 +95,18 @@ public function callFooter()
 	}
 
 
+	function growth()
+	{
+		$payment=$this->home_model->yearly_payment();
+		$released=$this->home_model->daily_released();
+		$daily=$this->home_model->daily_payment();
+
+		$data=array('payment'=>$payment,'released'=>$released,'daily'=>$daily);
+		echo json_encode($data);
+	}
+
+
+
 
 
 }?>
